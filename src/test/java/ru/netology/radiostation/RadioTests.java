@@ -50,6 +50,31 @@ public class RadioTests {
     }
 
     @Test
+    void stationNumPlus() {
+
+        RadioSettings station = new RadioSettings();
+
+        station.setNumStation(11);
+
+        int actual = station.getNumStation();
+        int expected = 0;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void stationNumMinus() {
+
+        RadioSettings station = new RadioSettings();
+
+        station.setNumStation(-1);
+
+        int actual = station.getNumStation();
+        int expected = 0;
+
+        assertEquals(actual, expected);
+    }
+    @Test
     void IncreaseVolume() {
 
         RadioSettings station = new RadioSettings();
@@ -90,6 +115,21 @@ public class RadioTests {
 
         int actual = station.getDecreaseVolume();
         int expected = 5;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void DecreaseVolumeOut() {
+
+        RadioSettings station = new RadioSettings();
+
+        int levelVolume = 10;
+
+        station.setDecreaseVolume(levelVolume);
+
+        int actual = station.getDecreaseVolume();
+        int expected = 0;
 
         assertEquals(actual, expected);
     }

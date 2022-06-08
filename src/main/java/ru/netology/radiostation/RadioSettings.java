@@ -48,9 +48,9 @@ public class RadioSettings {
 
     public void setNumStation(int station) {
 
-        if (station > 0) {
+        if (station >= 0) {
 
-            if (station < 10) {
+            if (station <= 10) {
 
                 currentStation = station;
             }
