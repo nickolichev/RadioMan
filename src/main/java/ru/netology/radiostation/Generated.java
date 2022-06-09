@@ -1,2 +1,4 @@
-package ru.netology.radiostation;public class Generated {
+package ru.netology.radiostation;
+
+public @interface Generated {
 }

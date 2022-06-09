@@ -29,9 +29,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
-                <configuration>
-                    <failIfNoTests>true</failIfNoTests>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -52,11 +49,10 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>check</id>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
                         <configuration>
+                            <excludes>
+                                <exclude>Users/JavaIDEA/RadioStation/src/main/java/ru/netology/radiostation/Main.java</exclude>
+                            </excludes>
                             <rules>
                                 <rule>
                                     <limits>
