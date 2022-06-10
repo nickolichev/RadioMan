@@ -49,10 +49,8 @@
                         </goals>
                     </execution>
                     <execution>
+                        <id>check</id>
                         <configuration>
-                            <excludes>
-                                <exclude>Users/JavaIDEA/RadioStation/src/main/java/ru/netology/radiostation/Main.java</exclude>
-                            </excludes>
                             <rules>
                                 <rule>
                                     <limits>

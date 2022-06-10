@@ -7,31 +7,57 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RadioTests {
 
     @Test
-    void stationNext() {
+    void stationBack() {
 
         RadioSettings station = new RadioSettings();
 
-        int[] stations = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        station.setCurrentStation(9);
+        station.BackStation();
 
-        station.setNextStation(stations);
-
-        int actual = station.getNextStation();
+        int actual = station.getCurrentStation();
         int expected = 0;
 
         assertEquals(actual, expected);
     }
 
     @Test
-    void stationPrev() {
+    void stationForvard() {
 
         RadioSettings station = new RadioSettings();
 
-        int[] stations = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+        station.setCurrentStation(0);
+        station.ForvardStation();
 
-        station.setPrevStation(stations);
-
-        int actual = station.getPrevStation();
+        int actual = station.getCurrentStation();
         int expected = 9;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void stationPlus() {
+
+        RadioSettings station = new RadioSettings();
+
+        station.setCurrentStation(6);
+        station.PlusStation();
+
+        int actual = station.getCurrentStation();
+        int expected = 7;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void stationMinus() {
+
+        RadioSettings station = new RadioSettings();
+
+        station.setCurrentStation(6);
+        station.MinusStation();
+
+        int actual = station.getCurrentStation();
+        int expected = 5;
 
         assertEquals(actual, expected);
     }
@@ -74,17 +100,17 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
+
     @Test
     void IncreaseVolume() {
 
         RadioSettings station = new RadioSettings();
 
-        int levelVolume = 5;
+        station.setCurrentVolume(8);
+        station.IncreaseVolume();
 
-        station.setIncreaseVolume(levelVolume);
-
-        int actual = station.getIncreaseVolume();
-        int expected = 6;
+        int actual = station.getCurrentVolume();
+        int expected = 9;
 
         assertEquals(actual, expected);
     }
@@ -94,11 +120,10 @@ public class RadioTests {
 
         RadioSettings station = new RadioSettings();
 
-        int levelVolume = 10;
+        station.setCurrentVolume(10);
+        station.IncreaseVolume();
 
-        station.setIncreaseVolume(levelVolume);
-
-        int actual = station.getIncreaseVolume();
+        int actual = station.getCurrentVolume();
         int expected = 10;
 
         assertEquals(actual, expected);
@@ -109,12 +134,11 @@ public class RadioTests {
 
         RadioSettings station = new RadioSettings();
 
-        int levelVolume = 6;
+        station.setCurrentVolume(3);
+        station.DecreaseVolume();
 
-        station.setDecreaseVolume(levelVolume);
-
-        int actual = station.getDecreaseVolume();
-        int expected = 5;
+        int actual = station.getCurrentVolume();
+        int expected = 2;
 
         assertEquals(actual, expected);
     }
@@ -124,32 +148,15 @@ public class RadioTests {
 
         RadioSettings station = new RadioSettings();
 
-        int levelVolume = 10;
+        station.setCurrentVolume(0);
+        station.DecreaseVolume();
 
-        station.setDecreaseVolume(levelVolume);
-
-        int actual = station.getDecreaseVolume();
-        int expected = 0;
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    void MinDecreaseVolume() {
-
-        RadioSettings station = new RadioSettings();
-
-        int levelVolume = 0;
-
-        station.setDecreaseVolume(levelVolume);
-
-        int actual = station.getDecreaseVolume();
+        int actual = station.getCurrentVolume();
         int expected = 0;
 
         assertEquals(actual, expected);
     }
 }
-
 
 
 

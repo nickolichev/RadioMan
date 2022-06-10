@@ -3,47 +3,60 @@ package ru.netology.radiostation;
 public class RadioSettings {
 
     private int currentStation;
+    private int currentStationBack;
+    private int currentStationForvard;
+    private int currentVolume;
 
-    public void setNextStation(int[] stations) {
+    public void setCurrentStation(int stations) {
 
-        int currentStation;
-        int lastStation = 9;
+        if (currentStation == 9) {
 
-        for (currentStation = 0; currentStation < stations.length; currentStation++) {
-
-            currentStation = currentStation + 1;
-
-            if (currentStation > 8) {
-
-                lastStation = 0;
-            }
-            this.currentStation = lastStation;
+            currentStationBack = 0;
         }
-    }
 
-    public int getNextStation() {
+        if (currentStation == 0) {
 
-        return this.currentStation;
-    }
-
-    public void setPrevStation(int[] stations) {
-
-        int currentStation;
-        int lastStation = 0;
-
-        for (currentStation = 0; currentStation < stations.length; currentStation++) {
-
-            if (currentStation == 0) {
-
-                lastStation = 9;
-            }
-            this.currentStation = lastStation;
+            currentStationForvard = 9;
         }
+
+        currentStation = stations;
     }
 
-    public int getPrevStation() {
+    public int getCurrentStation() {
 
         return currentStation;
+    }
+
+    public void BackStation() {
+
+        int backStation = currentStationBack;
+
+        setCurrentStation(backStation);
+    }
+
+    public void ForvardStation() {
+
+        int forvardStation = currentStationForvard;
+
+        setCurrentStation(forvardStation);
+    }
+
+    public void PlusStation() {
+
+        int plusStation;
+
+        plusStation = currentStation + 1;
+
+        setCurrentStation(plusStation);
+    }
+
+    public void MinusStation() {
+
+        int minusStation;
+
+        minusStation = currentStation - 1;
+
+        setCurrentStation(minusStation);
     }
 
     public void setNumStation(int station) {
@@ -62,42 +75,38 @@ public class RadioSettings {
         return currentStation;
     }
 
-    private int currentVolume;
+    public void setCurrentVolume(int currentVolume) {
 
-    public void setIncreaseVolume(int levelVolume) {
+        if (currentVolume < 0) {
 
-        if (levelVolume < 10) {
-
-            currentVolume = levelVolume + 1;
+            return;
         }
 
-        if (levelVolume == 10) {
+        if (currentVolume > 10) {
 
-            currentVolume = levelVolume;
+            return;
         }
+        this.currentVolume = currentVolume;
     }
 
-    public int getIncreaseVolume() {
+    public int getCurrentVolume() {
 
         return currentVolume;
     }
 
-    public void setDecreaseVolume(int levelVolume) {
+    public void IncreaseVolume() {
 
-        if (levelVolume < 10) {
+        int currentVolume = this.currentVolume + 1;
 
-            currentVolume = levelVolume - 1;
-        }
+        setCurrentVolume(currentVolume);
 
-        if (levelVolume == 0) {
-
-            currentVolume = levelVolume;
-        }
     }
 
-    public int getDecreaseVolume() {
+    public void DecreaseVolume() {
 
-        return currentVolume;
+        int currentVolume = this.currentVolume - 1;
+
+        setCurrentVolume(currentVolume);
+
     }
-
 }
