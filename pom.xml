@@ -49,7 +49,6 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>check</id>
                         <configuration>
                             <rules>
                                 <rule>

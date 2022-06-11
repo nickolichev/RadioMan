@@ -9,6 +9,20 @@ public class RadioSettings {
 
     public void setCurrentStation(int stations) {
 
+        if (currentStation > 9) {
+
+            currentStation = 100;
+
+            return;
+        }
+
+        if (currentStation < 0) {
+
+            currentStation = -100;
+
+            return;
+        }
+
         if (currentStation == 9) {
 
             currentStationBack = 0;
@@ -27,21 +41,35 @@ public class RadioSettings {
         return currentStation;
     }
 
-    public void BackStation() {
+    public void stationMin() {
+
+        int stationMin = currentStation;
+
+        setCurrentStation(stationMin);
+    }
+
+    public void stationMax() {
+
+        int stationMax = currentStation;
+
+        setCurrentStation(stationMax);
+    }
+
+    public void backStation() {
 
         int backStation = currentStationBack;
 
         setCurrentStation(backStation);
     }
 
-    public void ForvardStation() {
+    public void forvardStation() {
 
         int forvardStation = currentStationForvard;
 
         setCurrentStation(forvardStation);
     }
 
-    public void PlusStation() {
+    public void plusStation() {
 
         int plusStation;
 
@@ -50,7 +78,7 @@ public class RadioSettings {
         setCurrentStation(plusStation);
     }
 
-    public void MinusStation() {
+    public void minusStation() {
 
         int minusStation;
 
@@ -59,20 +87,11 @@ public class RadioSettings {
         setCurrentStation(minusStation);
     }
 
-    public void setNumStation(int station) {
+    public void numStation() {
 
-        if (station >= 0) {
+        int numStation = currentStation;
 
-            if (station <= 10) {
-
-                currentStation = station;
-            }
-        }
-    }
-
-    public int getNumStation() {
-
-        return currentStation;
+        setCurrentStation(numStation);
     }
 
     public void setCurrentVolume(int currentVolume) {
@@ -94,7 +113,7 @@ public class RadioSettings {
         return currentVolume;
     }
 
-    public void IncreaseVolume() {
+    public void increaseVolume() {
 
         int currentVolume = this.currentVolume + 1;
 
@@ -102,7 +121,7 @@ public class RadioSettings {
 
     }
 
-    public void DecreaseVolume() {
+    public void decreaseVolume() {
 
         int currentVolume = this.currentVolume - 1;
 

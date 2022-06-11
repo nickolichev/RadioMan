@@ -7,12 +7,40 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RadioTests {
 
     @Test
+    void stationMinimum() {
+
+        RadioSettings station = new RadioSettings();
+
+        station.setCurrentStation(-1);
+        station.stationMin();
+
+        int actual = station.getCurrentStation();
+        int expected = -100;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void stationMaximum() {
+
+        RadioSettings station = new RadioSettings();
+
+        station.setCurrentStation(10);
+        station.stationMax();
+
+        int actual = station.getCurrentStation();
+        int expected = 100;
+
+        assertEquals(actual, expected);
+    }
+
+    @Test
     void stationBack() {
 
         RadioSettings station = new RadioSettings();
 
         station.setCurrentStation(9);
-        station.BackStation();
+        station.backStation();
 
         int actual = station.getCurrentStation();
         int expected = 0;
@@ -26,7 +54,7 @@ public class RadioTests {
         RadioSettings station = new RadioSettings();
 
         station.setCurrentStation(0);
-        station.ForvardStation();
+        station.forvardStation();
 
         int actual = station.getCurrentStation();
         int expected = 9;
@@ -40,7 +68,7 @@ public class RadioTests {
         RadioSettings station = new RadioSettings();
 
         station.setCurrentStation(6);
-        station.PlusStation();
+        station.plusStation();
 
         int actual = station.getCurrentStation();
         int expected = 7;
@@ -54,7 +82,7 @@ public class RadioTests {
         RadioSettings station = new RadioSettings();
 
         station.setCurrentStation(6);
-        station.MinusStation();
+        station.minusStation();
 
         int actual = station.getCurrentStation();
         int expected = 5;
@@ -67,36 +95,11 @@ public class RadioTests {
 
         RadioSettings station = new RadioSettings();
 
-        station.setNumStation(5);
+        station.setCurrentStation(5);
+        station.numStation();
 
-        int actual = station.getNumStation();
+        int actual = station.getCurrentStation();
         int expected = 5;
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    void stationNumPlus() {
-
-        RadioSettings station = new RadioSettings();
-
-        station.setNumStation(11);
-
-        int actual = station.getNumStation();
-        int expected = 0;
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    void stationNumMinus() {
-
-        RadioSettings station = new RadioSettings();
-
-        station.setNumStation(-1);
-
-        int actual = station.getNumStation();
-        int expected = 0;
 
         assertEquals(actual, expected);
     }
@@ -107,7 +110,7 @@ public class RadioTests {
         RadioSettings station = new RadioSettings();
 
         station.setCurrentVolume(8);
-        station.IncreaseVolume();
+        station.increaseVolume();
 
         int actual = station.getCurrentVolume();
         int expected = 9;
@@ -121,7 +124,7 @@ public class RadioTests {
         RadioSettings station = new RadioSettings();
 
         station.setCurrentVolume(10);
-        station.IncreaseVolume();
+        station.increaseVolume();
 
         int actual = station.getCurrentVolume();
         int expected = 10;
@@ -135,7 +138,7 @@ public class RadioTests {
         RadioSettings station = new RadioSettings();
 
         station.setCurrentVolume(3);
-        station.DecreaseVolume();
+        station.decreaseVolume();
 
         int actual = station.getCurrentVolume();
         int expected = 2;
@@ -149,7 +152,7 @@ public class RadioTests {
         RadioSettings station = new RadioSettings();
 
         station.setCurrentVolume(0);
-        station.DecreaseVolume();
+        station.decreaseVolume();
 
         int actual = station.getCurrentVolume();
         int expected = 0;
