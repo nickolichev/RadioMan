@@ -1,7 +1,6 @@
 package ru.netology.radiostation;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTests {
@@ -19,7 +18,6 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
-
     @Test
     void stationMaximum() {
 
@@ -33,7 +31,6 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
-
     @Test
     void stationBack() {
 
@@ -47,7 +44,19 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
+    @Test
+    void stationBackFalse() {
 
+        RadioSettings station = new RadioSettings();
+
+        station.setCurrentStation(7);
+        station.backStation();
+
+        int actual = station.getCurrentStation();
+        int expected = 7;
+
+        assertEquals(actual, expected);
+    }
     @Test
     void stationForvard() {
 
@@ -61,7 +70,19 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
+    @Test
+    void stationForvardFalse() {
 
+        RadioSettings station = new RadioSettings();
+
+        station.setCurrentStation(1);
+        station.forvardStation();
+
+        int actual = station.getCurrentStation();
+        int expected = 1;
+
+        assertEquals(actual, expected);
+    }
     @Test
     void stationPlus() {
 
@@ -75,7 +96,6 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
-
     @Test
     void stationMinus() {
 
@@ -89,7 +109,6 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
-
     @Test
     void stationNum() {
 
@@ -103,7 +122,6 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
-
     @Test
     void IncreaseVolume() {
 
@@ -117,7 +135,6 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
-
     @Test
     void MaxIncreaseVolume() {
 
@@ -131,7 +148,6 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
-
     @Test
     void DecreaseVolume() {
 
@@ -145,7 +161,6 @@ public class RadioTests {
 
         assertEquals(actual, expected);
     }
-
     @Test
     void DecreaseVolumeOut() {
 
