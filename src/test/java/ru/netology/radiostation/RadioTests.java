@@ -4,150 +4,140 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTests {
-    RadioSettings station = new RadioSettings() {
-    };
 
-    RadioSettings range = new RadioSettings(5) {};
+  RadioSettings station = new RadioSettings(
+          15,
+          0,
+          9,
+          6,
+          0,
+          100,
+          50) {
+  };
 
-    @Test
-    void settingNext() {
+  RadioSettings stationDefault = new RadioSettings() {
+  };
 
-        station.setCurrentNext(true, 6);
-        assertEquals(7, station.getCurrentNext());
-    }
+  @Test
+  void settingNextStation() {
+    station.setCurrentNext(true, station.getStation());
+    assertEquals(7, station.getCurrentNext());
+  }
 
-    @Test
-    void settingNextFalse() {
+  @Test
+  void settingNextFalse() {
+    station.setCurrentNext(false, station.getStation());
+    assertEquals(station.getStation(), station.getCurrentNext());
+  }
 
-        station.setCurrentNext(false, 6);
-        assertEquals(6, station.getCurrentNext());
-    }
+  @Test
+  void settingPrevStation() {
+    station.setCurrentPrev(true, station.getStation());
+    assertEquals(5, station.getCurrentPrev());
+  }
 
-    @Test
-    void settingPrev() {
+  @Test
+  void settingPrevFalse() {
+    station.setCurrentPrev(false, station.getStation());
+    assertEquals(station.getStation(), station.getCurrentPrev());
+  }
 
-        station.setCurrentPrev(true, 4);
-        assertEquals(3, station.getCurrentPrev());
-    }
+  @Test
+  void settingsRangeDefault() {
+    // здесь не проверяем условия, проверяем корректность
+    // введенных/установленных дефолтных настроек радио
+    assertEquals(10, stationDefault.getRangeDefault());
+  }
 
-    @Test
-    void settingPrevFalse() {
+  @Test
+  void settingsRangeUser() {
+    // здесь не проверяем условия, проверяем возможность
+    // установки пользовательских настроек радио и их корректность
+    assertEquals(15, station.getRangeUser());
+  }
 
-        station.setCurrentPrev(false, 4);
-        assertEquals(4, station.getCurrentPrev());
-    }
+  @Test
+  void settingsUpMaxStation() {
+    station.setCurrentStation(10);
+    assertEquals(100, station.getCurrentStation());
+  }
 
-    @Test
-    void settingsDefault() {
+  @Test
+  void settingsDownMinStation() {
+    station.setCurrentStation(-1);
+    assertEquals(-100, station.getCurrentStation());
+  }
 
-        station.setCurrentDefault(10);
-        assertEquals(10, station.getCurrentDefault());
-    }
+  @Test
+  void settingsMaxStation() {
+    station.setCurrentStation(station.getMaxStation());
+    assertEquals(station.getMinStation(), station.getCurrentStation());
+  }
 
-    @Test
-    void settingsDefaultUp() {
+  @Test
+  void settingsMinStation() {
+    station.setCurrentStation(station.getMinStation());
+    assertEquals(station.getMaxStation(), station.getCurrentStation());
+  }
 
-        station.setCurrentDefault(11);
-        assertEquals(100, station.getCurrentDefault());
-    }
+  @Test
+  void settingsFalse() {
+    station.setCurrentStation(1);
+    assertEquals(station.getStation(), station.getCurrentStation());
+  }
 
-    @Test
-    void settingsDefaultDown() {
+  @Test
+  void settingsVolumeMin() {
+    //  методы без условий нет смысла проверять, но
+    // я тестирую для того, чтобы убедиться/подтвердить,
+    //  что параметры объекте RadioSettings
+    // правильно взяты/установлены
+    assertEquals(0, station.getMinVolume());
+  }
 
-        station.setCurrentDefault(-1);
-        assertEquals(100, station.getCurrentDefault());
-    }
+  @Test
+  void settingsVolumeMax() {
+    //  методы без условий нет смысла проверять, но
+    // я тестирую, что параметры объекте RadioSettings
+    // правильно взяты/установлены
+    assertEquals(100, station.getMaxVolume());
+  }
 
-    @Test
-    void settingsUp() {
+  @Test
+  void settingsVolumeNext() {
+    station.setVolumeNext(true, station.getVolume());
+    assertEquals(51, station.getVolumeNext());
+  }
 
-        station.setCurrentStation(11);
-        assertEquals(100, station.getCurrentStation());
-    }
+  @Test
+  void settingsVolumeNextFalse() {
+    station.setVolumeNext(false, station.getCurrentVolume());
+    assertEquals(station.getCurrentVolume(), station.getVolumeNext());
+  }
 
-    @Test
-    void settingsDown() {
+  @Test
+  void settingsVolumePrev() {
+    station.setVolumePrev(true, station.getVolume());
+    assertEquals(49, station.getVolumePrev());
+  }
 
-        station.setCurrentStation(-1);
-        assertEquals(-100, station.getCurrentStation());
-    }
+  @Test
+  void settingsVolumePrevFalse() {
+    station.setVolumePrev(false, station.getCurrentVolume());
+    assertEquals(station.getCurrentVolume(), station.getVolumePrev());
+  }
 
-    @Test
-    void settingsMax() {
+  @Test
+  void settingsUpVolumeMax() {
+    station.setCurrentVolume(101);
+    assertEquals(station.getMaxVolume(), station.getCurrentVolume());
+  }
 
-        station.setCurrentStation(9);
-        assertEquals(0, station.getCurrentStation());
-    }
-
-    @Test
-    void settingsMin() {
-
-        station.setCurrentStation(0);
-        assertEquals(9, station.getCurrentStation());
-    }
-
-    @Test
-    void settingsMinFalse() {
-
-        station.setCurrentStation(1);
-        assertEquals(0, station.getCurrentStation());
-    }
-
-    @Test
-    void settingsRange() {
-
-        range.setCurrentRange(5);
-        assertEquals(5, range.getCurrentRange());
-    }
-
-    @Test
-    void settingsRangeFalse() {
-
-        range.setCurrentRange(9);
-        assertEquals(0, range.getCurrentRange());
-    }
-
-    @Test
-    void settingsVolumeNext() {
-
-        station.setVolumeNext(true, 50);
-        assertEquals(51, station.getVolumeNext());
-    }
-
-    @Test
-    void settingsVolumeNextFalse() {
-
-        station.setVolumeNext(false, 50);
-        assertEquals(50, station.getVolumeNext());
-    }
-
-    @Test
-    void settingsVolumePrev() {
-
-        station.setVolumePrev(true, 50);
-        assertEquals(49, station.getVolumePrev());
-    }
-
-    @Test
-    void settingsVolumePrevFalse() {
-
-        station.setVolumePrev(false, 40);
-        assertEquals(40, station.getVolumePrev());
-    }
-
-    @Test
-    void settingsVolumeUp() {
-
-        station.setCurrentVolume(101);
-        assertEquals(100, station.getCurrentVolume());
-    }
-
-    @Test
-    void settingsVolumeDown() {
-
-        station.setCurrentVolume(-1);
-        assertEquals(0, station.getCurrentVolume());
-    }
+  @Test
+  void settingsDownVolumeMin() {
+    station.setCurrentVolume(-1);
+    assertEquals(station.getMinVolume(), station.getCurrentVolume());
+  }
 }
 
 
