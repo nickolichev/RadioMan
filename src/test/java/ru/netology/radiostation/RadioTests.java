@@ -40,6 +40,7 @@ public class RadioTests {
 
   // Закомментировано для 100% покрытия
 //  @Test
+//  RadioSettings station = new RadioSettings(20) {};
 //  void settingsRangeUserFalse() {
 //    assertEquals(15, station.getRangeUser());
 //  }
