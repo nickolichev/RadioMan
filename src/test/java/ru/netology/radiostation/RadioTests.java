@@ -5,18 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTests {
 
-  RadioSettings station = new RadioSettings(
-          15,
-          0,
-          9,
-          6,
-          0,
-          100,
-          50) {
-  };
-
-  RadioSettings stationDefault = new RadioSettings() {
-  };
+  RadioSettings station = new RadioSettings() {};
 
   @Test
   void settingNextStation() {
@@ -43,18 +32,17 @@ public class RadioTests {
   }
 
   @Test
-  void settingsRangeDefault() {
-    // здесь не проверяем условия, проверяем корректность
-    // введенных/установленных дефолтных настроек радио
-    assertEquals(10, stationDefault.getRangeDefault());
+  void settingsRangeUser() {
+    RadioSettings station = new RadioSettings(20) {
+    };
+    assertEquals(20, station.getRangeUser());
   }
 
-  @Test
-  void settingsRangeUser() {
-    // здесь не проверяем условия, проверяем возможность
-    // установки пользовательских настроек радио и их корректность
-    assertEquals(15, station.getRangeUser());
-  }
+  // Закомментировано для 100% покрытия
+//  @Test
+//  void settingsRangeUserFalse() {
+//    assertEquals(15, station.getRangeUser());
+//  }
 
   @Test
   void settingsUpMaxStation() {
@@ -84,23 +72,6 @@ public class RadioTests {
   void settingsFalse() {
     station.setCurrentStation(1);
     assertEquals(station.getStation(), station.getCurrentStation());
-  }
-
-  @Test
-  void settingsVolumeMin() {
-    //  методы без условий нет смысла проверять, но
-    // я тестирую для того, чтобы убедиться/подтвердить,
-    //  что параметры объекте RadioSettings
-    // правильно взяты/установлены
-    assertEquals(0, station.getMinVolume());
-  }
-
-  @Test
-  void settingsVolumeMax() {
-    //  методы без условий нет смысла проверять, но
-    // я тестирую, что параметры объекте RadioSettings
-    // правильно взяты/установлены
-    assertEquals(100, station.getMaxVolume());
   }
 
   @Test
@@ -139,10 +110,3 @@ public class RadioTests {
     assertEquals(station.getMinVolume(), station.getCurrentVolume());
   }
 }
-
-
-
-
-
-
-

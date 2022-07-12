@@ -2,38 +2,21 @@ package ru.netology.radiostation;
 
 public class RadioSettings {
 
-  private int rangeDefault;
   private int rangeUser;
-  private int minStation;
-  private int maxStation;
-  private int currentStation;
-  private int minVolume;
-  private int maxVolume;
-  private int currentVolume;
+  private int minStation = 0;
+  private int maxStation = 9;
+  private int currentStation = 6;
+  private int minVolume = 0;
+  private int maxVolume = 100;
+  private int currentVolume = 50;
 
-  public RadioSettings(
-          int rangeUser,
-          int minStation,
-          int maxStation,
-          int currentStation,
-          int minVolume,
-          int maxVolume,
-          int currentVolume) {
+  public RadioSettings(int rangeUser) {
     this.rangeUser = rangeUser;
-    this.minStation = minStation;
-    this.maxStation = maxStation;
-    this.currentStation = currentStation;
-    this.minVolume = minVolume;
-    this.maxVolume = maxVolume;
-    this.currentVolume = currentVolume;
   }
 
   public RadioSettings() {
-    this.rangeDefault = 10;
   }
-  public int getRangeDefault() {
-    return rangeDefault;
-  }
+
   public int getRangeUser() {
     return rangeUser;
   }
