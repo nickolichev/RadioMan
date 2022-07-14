@@ -1,49 +1,13 @@
 package ru.netology.radiostation;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTests {
 
-  RadioSettings station = new RadioSettings() {};
-
-  @Test
-  void settingNextStation() {
-    station.setCurrentNext(true, station.getStation());
-    assertEquals(7, station.getCurrentNext());
-  }
-
-  @Test
-  void settingNextFalse() {
-    station.setCurrentNext(false, station.getStation());
-    assertEquals(station.getStation(), station.getCurrentNext());
-  }
-
-  @Test
-  void settingPrevStation() {
-    station.setCurrentPrev(true, station.getStation());
-    assertEquals(5, station.getCurrentPrev());
-  }
-
-  @Test
-  void settingPrevFalse() {
-    station.setCurrentPrev(false, station.getStation());
-    assertEquals(station.getStation(), station.getCurrentPrev());
-  }
-
-  @Test
-  void settingsRangeUser() {
-    RadioSettings station = new RadioSettings(20) {
-    };
-    assertEquals(20, station.getRangeUser());
-  }
-
-  // Закомментировано для 100% покрытия
-//  @Test
-//  RadioSettings station = new RadioSettings(20) {};
-//  void settingsRangeUserFalse() {
-//    assertEquals(15, station.getRangeUser());
-//  }
+  RadioSettings station = new RadioSettings() {
+  };
 
   @Test
   void settingsUpMaxStation() {
@@ -70,33 +34,44 @@ public class RadioTests {
   }
 
   @Test
-  void settingsFalse() {
+  void settingsCurrentStation() {
     station.setCurrentStation(1);
     assertEquals(station.getStation(), station.getCurrentStation());
   }
 
   @Test
-  void settingsVolumeNext() {
-    station.setVolumeNext(true, station.getVolume());
-    assertEquals(51, station.getVolumeNext());
+  void settingNextStation() {
+    station.setCurrentStation(6);
+    station.nextStation();
+    assertEquals(7, station.getCurrentStation());
   }
 
   @Test
-  void settingsVolumeNextFalse() {
-    station.setVolumeNext(false, station.getCurrentVolume());
-    assertEquals(station.getCurrentVolume(), station.getVolumeNext());
+  void settingPrevStation() {
+    station.setCurrentStation(6);
+    station.prevStation();
+    assertEquals(5, station.getCurrentStation());
   }
 
   @Test
-  void settingsVolumePrev() {
-    station.setVolumePrev(true, station.getVolume());
-    assertEquals(49, station.getVolumePrev());
+  void settingsRangeUser() {
+    RadioSettings station = new RadioSettings(20) {
+    };
+    assertEquals(20, station.getRangeUser());
   }
 
   @Test
-  void settingsVolumePrevFalse() {
-    station.setVolumePrev(false, station.getCurrentVolume());
-    assertEquals(station.getCurrentVolume(), station.getVolumePrev());
+  void settingsNextVolume() {
+    station.setCurrentVolume(50);
+    station.nextVolume();
+    assertEquals(51, station.getCurrentVolume());
+  }
+
+  @Test
+  void settingsPrevVolume() {
+    station.setCurrentVolume(50);
+    station.prevVolume();
+    assertEquals(49, station.getCurrentVolume());
   }
 
   @Test

@@ -5,10 +5,10 @@ public class RadioSettings {
   private int rangeUser;
   private int minStation = 0;
   private int maxStation = 9;
-  private int currentStation = 6;
+  private int currentStation;
   private int minVolume = 0;
   private int maxVolume = 100;
-  private int currentVolume = 50;
+  private int currentVolume;
 
   public RadioSettings(int rangeUser) {
     this.rangeUser = rangeUser;
@@ -35,84 +35,68 @@ public class RadioSettings {
   public int getMaxVolume() {
     return maxVolume;
   }
-  public int getVolume() {
-    return currentVolume;
+
+  public void setCurrentStation(int station) {
+    if (station > maxStation) {
+      currentStation = 100;
+      return;
+    }
+    if (station < minStation) {
+      currentStation = -100;
+      return;
+    }
+    if (station == maxStation) {
+      currentStation = minStation;
+      return;
+    }
+    if (station == minStation) {
+      currentStation = maxStation;
+      return;
+    }
+    currentStation = station;
   }
 
-  public void setCurrentStation(int currentStation) {
-    if (currentStation > maxStation) {
-      this.currentStation = 100;
-      return;
-    }
-    if (currentStation < minStation) {
-      this.currentStation = -100;
-      return;
-    }
-    if (currentStation == maxStation) {
-      this.currentStation = minStation;
-      return;
-    }
-    if (currentStation == minStation) {
-      this.currentStation = maxStation;
-    }
-  }
   public int getCurrentStation() {
-    return this.currentStation;
+    return currentStation;
   }
 
-  public void setCurrentNext(Boolean nextStation, int currentStation) {
-    if (nextStation) {
-      this.currentStation = currentStation + 1;
-    } else {
-      this.currentStation = currentStation;
-    }
-  }
-  public int getCurrentNext() {
-    return this.currentStation;
+  public void nextStation() {
+    int nextStation;
+    nextStation = currentStation + 1;
+    setCurrentStation(nextStation);
   }
 
-  public void setCurrentPrev(Boolean prevStation, int currentStation) {
-    if (prevStation) {
-      this.currentStation = currentStation - 1;
-    } else {
-      this.currentStation = currentStation;
-    }
-  }
-  public int getCurrentPrev() {
-    return this.currentStation;
+  public void prevStation() {
+    int prevStation;
+    prevStation = currentStation - 1;
+    setCurrentStation(prevStation);
   }
 
-  public void setCurrentVolume(int currentVolume) {
-    if (currentVolume < minVolume) {
-      this.currentVolume = minVolume;
+  public void setCurrentVolume(int volume) {
+    if (volume < minVolume) {
+      currentVolume = minVolume;
+      return;
     }
-    if (currentVolume > maxVolume) {
-      this.currentVolume = maxVolume;
+    if (volume > maxVolume) {
+      currentVolume = maxVolume;
+      return;
     }
+    currentVolume = volume;
   }
+
   public int getCurrentVolume() {
     return currentVolume;
   }
 
-  public void setVolumeNext(Boolean nextVolume, int currentVolume) {
-    if (nextVolume) {
-      this.currentVolume = currentVolume + 1;
-    } else {
-      this.currentVolume = currentVolume;
-    }
-  }
-  public int getVolumeNext() {
-    return this.currentVolume;
+  public void nextVolume() {
+    int nextVolume;
+    nextVolume = currentVolume + 1;
+    setCurrentVolume(nextVolume);
   }
 
-  public void setVolumePrev(Boolean prevStation, int currentVolume) {
-    if (prevStation) {
-      this.currentVolume = currentVolume - 1;
-    } else {
-      this.currentVolume = currentVolume;
-    }
-  }
-  public int getVolumePrev() {
-    return this.currentVolume;
+  public void prevVolume() {
+    int prevVolume;
+    prevVolume = currentVolume - 1;
+    setCurrentVolume(prevVolume);
   }
 }
