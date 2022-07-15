@@ -10,27 +10,39 @@ public class RadioTests {
   };
 
   @Test
-  void settingsUpMaxStation() {
+  void settingsRangeDefault() {
+    RadioSettings station = new RadioSettings(20) {
+    };
+    station.setRangeDefault(15);
+    assertEquals(15, station.getRangeDefault());
+  }
+
+  @Test
+  void settingsUpRangeDefault() {
+    RadioSettings station = new RadioSettings(20) {
+    };
+    station.setRangeDefault(21);
+    assertEquals(0, station.getRangeDefault());
+  }
+
+  @Test
+  void settingsDownRangeDefault() {
+    RadioSettings station = new RadioSettings(20) {
+    };
+    station.setRangeDefault(-1);
+    assertEquals(0, station.getRangeDefault());
+  }
+
+  @Test
+  void settingsUpMaxStationUser() {
     station.setCurrentStation(10);
-    assertEquals(100, station.getCurrentStation());
+    assertEquals(404, station.getCurrentStation());
   }
 
   @Test
-  void settingsDownMinStation() {
+  void settingsDownMinStationUser() {
     station.setCurrentStation(-1);
-    assertEquals(-100, station.getCurrentStation());
-  }
-
-  @Test
-  void settingsMaxStation() {
-    station.setCurrentStation(station.getMaxStation());
-    assertEquals(station.getMinStation(), station.getCurrentStation());
-  }
-
-  @Test
-  void settingsMinStation() {
-    station.setCurrentStation(station.getMinStation());
-    assertEquals(station.getMaxStation(), station.getCurrentStation());
+    assertEquals(404, station.getCurrentStation());
   }
 
   @Test
@@ -47,6 +59,14 @@ public class RadioTests {
   }
 
   @Test
+  void settingNextForMaxStation() {
+    station.setCurrentStation(9);
+    station.nextStation();
+    assertEquals(station.getMinStation(), station.getCurrentStation());
+  }
+
+
+  @Test
   void settingPrevStation() {
     station.setCurrentStation(6);
     station.prevStation();
@@ -54,18 +74,17 @@ public class RadioTests {
   }
 
   @Test
-  void settingsRangeUser() {
-    RadioSettings station = new RadioSettings(20) {
-    };
-    assertEquals(20, station.getRangeUser());
+  void settingPrevBeforeMinStation() {
+    station.setCurrentStation(0);
+    station.prevStation();
+    assertEquals(station.getMaxStation(), station.getCurrentStation());
   }
 
-  // Закомментировано для 100% покрытия
-//  @Test
-//  RadioSettings station = new RadioSettings(20) {};
-//  void settingsRangeUserFalse() {
-//    assertEquals(15, station.getRangeUser());
-//  }
+  @Test
+  void settingsCurrentVolume() {
+    station.setCurrentVolume(1);
+    assertEquals(station.getCurrentVolume(), station.getCurrentVolume());
+  }
 
   @Test
   void settingsNextVolume() {
@@ -82,14 +101,30 @@ public class RadioTests {
   }
 
   @Test
+  void settingsVolumeMax() {
+    station.setCurrentVolume(station.getMaxVolume());
+    station.nextVolume();
+    assertEquals(station.getMaxVolume(), station.getCurrentVolume());
+  }
+
+  @Test
+  void settingsVolumeMin() {
+    station.setCurrentVolume(station.getMinVolume());
+    station.prevVolume();
+    assertEquals(station.getMinVolume(), station.getCurrentVolume());
+  }
+
+  @Test
   void settingsUpVolumeMax() {
     station.setCurrentVolume(101);
+    station.nextVolume();
     assertEquals(station.getMaxVolume(), station.getCurrentVolume());
   }
 
   @Test
   void settingsDownVolumeMin() {
     station.setCurrentVolume(-1);
+    station.prevVolume();
     assertEquals(station.getMinVolume(), station.getCurrentVolume());
   }
 }
