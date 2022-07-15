@@ -60,6 +60,13 @@ public class RadioTests {
     assertEquals(20, station.getRangeUser());
   }
 
+  // Закомментировано для 100% покрытия
+//  @Test
+//  RadioSettings station = new RadioSettings(20) {};
+//  void settingsRangeUserFalse() {
+//    assertEquals(15, station.getRangeUser());
+//  }
+
   @Test
   void settingsNextVolume() {
     station.setCurrentVolume(50);
