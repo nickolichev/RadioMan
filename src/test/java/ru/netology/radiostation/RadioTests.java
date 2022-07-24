@@ -10,27 +10,30 @@ public class RadioTests {
   };
 
   @Test
-  void settingsRangeDefault() {
+    //тест на установку диапазона станций внутри пользовательского диапазона станций
+  void settingsRangeUser() {
     RadioSettings station = new RadioSettings(20) {
     };
-    station.setRangeDefault(15);
-    assertEquals(15, station.getRangeDefault());
+    station.setRangeUser(15);
+    assertEquals(15, station.getRangeUser());
   }
 
   @Test
-  void settingsUpRangeDefault() {
+    //тест на установку диапазона станций выше пользовательского диапазона
+  void settingsUpRangeUser() {
     RadioSettings station = new RadioSettings(20) {
     };
-    station.setRangeDefault(21);
-    assertEquals(0, station.getRangeDefault());
+    station.setRangeUser(21);
+    assertEquals(404, station.getRangeUser());
   }
 
   @Test
-  void settingsDownRangeDefault() {
+    //тест на установку диапазона станций ниже пользовательского диапазона
+  void settingsDownRangeUser() {
     RadioSettings station = new RadioSettings(20) {
     };
-    station.setRangeDefault(-1);
-    assertEquals(0, station.getRangeDefault());
+    station.setRangeUser(-1);
+    assertEquals(404, station.getRangeUser());
   }
 
   @Test
@@ -64,7 +67,6 @@ public class RadioTests {
     station.nextStation();
     assertEquals(station.getMinStation(), station.getCurrentStation());
   }
-
 
   @Test
   void settingPrevStation() {

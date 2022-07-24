@@ -6,7 +6,6 @@ public class RadioSettings {
   private int minStation = 0;
   private int maxStation = 9;
   private int currentStation;
-  private int currentStationUser;
   private int minVolume = 0;
   private int maxVolume = 100;
   private int currentVolume;
@@ -34,15 +33,16 @@ public class RadioSettings {
     return maxVolume;
   }
 
-  public void setRangeDefault(int currentStationDefault) {
-    if (currentStationDefault <= rangeUser && currentStationDefault >= minStation) {
-      currentStation = currentStationDefault;
+  // метод установки пользовательского диапазона станций
+  public void setRangeUser(int rangeUserTest) {
+    if (rangeUserTest <= rangeUser && rangeUserTest >= minStation) {
+      rangeUser = rangeUserTest;
     } else {
-      return;
+      rangeUser = 404;
     }
   }
-  public int getRangeDefault() {
-    return currentStation;
+  public int getRangeUser() {
+    return rangeUser;
   }
 
   public void setCurrentStation(int station) {
