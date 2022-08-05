@@ -2,82 +2,121 @@ package ru.netology.radiostation;
 
 public class RadioSettings {
 
-    private int currentStation;
-    private int startStation = 0;
-    private int finishStation = 9;
-    private int currentVolume;
-    private  int startVolume = 0;
-    private  int finishVolume = 10;
-    public void setCurrentStation(int station) {
-        if (station > finishStation) {
-           currentStation = 100;
-           return;
-        }
-        if (station < startStation) {
-            currentStation = -100;
-            return;
-        }
-        this.currentStation = station;
+  private int rangeUser;
+  private int minStation = 0;
+  private int maxStation = 9;
+  private int currentStation;
+  private int minVolume = 0;
+  private int maxVolume = 100;
+  private int currentVolume;
+
+  public RadioSettings(int rangeUser) {
+    this.rangeUser = rangeUser;
+  }
+
+  public RadioSettings() {
+  }
+
+  public int getMinStation() {
+    return minStation;
+  }
+  public int getMaxStation() {
+    return maxStation;
+  }
+  public int getStation() {
+    return currentStation;
+  }
+  public int getMinVolume() {
+    return minVolume;
+  }
+  public int getMaxVolume() {
+    return maxVolume;
+  }
+// метод установки станции в пользовательском диапазоне
+  public void setCurrentStationUser(int currentStationUser) {
+    if (rangeUser < currentStationUser) {
+      currentStation = 404;
     }
-    public int getCurrentStation() {
-        return currentStation;
+    if (rangeUser >= currentStationUser) {
+      currentStation = currentStationUser;
     }
-    public void stationMin() {
-        int stationMin = currentStation;
-        setCurrentStation(stationMin);
+  }
+  public int getCurrentStationUser() {
+    return currentStation;
+  }
+
+//   метод установки пользовательского диапазона станций
+  public void setRangeUser(int rangeUserTest) {
+    if (rangeUserTest <= rangeUser && rangeUserTest >= minStation) {
+      rangeUser = rangeUserTest;
+    } else {
+      rangeUser = 404;
     }
-    public void stationMax() {
-        int stationMax = currentStation;
-        setCurrentStation(stationMax);
+  }
+  public int getRangeUser() {
+    return rangeUser;
+  }
+
+  public void setCurrentStation(int station) {
+    if (station > maxStation) {
+      currentStation = 404;
+      return;
     }
-    public void backStation() {
-        if (currentStation == finishStation) {
-            currentStation = startStation;
-            setCurrentStation(currentStation);
-        } else {
-            return;
-        }
+    if (station < minStation) {
+      currentStation = 404;
+      return;
     }
-    public void forvardStation() {
-        if (currentStation == startStation) {
-            currentStation = finishStation;
-            setCurrentStation(currentStation);
-        } else {
-            return;
-        }
+    currentStation = station;
+  }
+  public int getCurrentStation() {
+    return currentStation;
+  }
+
+  public void nextStation() {
+    if (currentStation == maxStation) {
+      currentStation = minStation;
+      return;
+    } else {
+      currentStation = currentStation + 1;
     }
-    public void plusStation() {
-        int plusStation;
-        plusStation = currentStation + 1;
-        setCurrentStation(plusStation);
+    setCurrentStation(currentStation);
+  }
+
+  public void prevStation() {
+    if (currentStation == minStation) {
+      currentStation = maxStation;
+      return;
+    } else {
+      currentStation = currentStation - 1;
     }
-    public void minusStation() {
-        int minusStation;
-        minusStation = currentStation - 1;
-        setCurrentStation(minusStation);
+    setCurrentStation(currentStation);
+  }
+
+  public void setCurrentVolume(int volume) {
+    currentVolume = volume;
+  }
+  public int getCurrentVolume() {
+    return currentVolume;
+  }
+
+  public void nextVolume() {
+    if (currentVolume >= maxVolume) {
+      currentVolume = maxVolume;
+    } else {
+      currentVolume = currentVolume + 1;
     }
-    public void numStation() {
-        int numStation = currentStation;
-        setCurrentStation(numStation);
+    setCurrentVolume(currentVolume);
+  }
+
+  public void prevVolume() {
+    if (currentVolume <= minVolume) {
+      currentVolume = minVolume;
+    } else {
+      currentVolume = currentVolume - 1;
     }
-    public void setCurrentVolume(int currentVolume) {
-        if (currentVolume < startVolume) {
-            return;
-        }
-        if (currentVolume > finishVolume) {
-            return;
-        }
-        this.currentVolume = currentVolume;
-    }
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-    public void increaseVolume() {
-        int currentVolume = this.currentVolume + 1;
-        setCurrentVolume(currentVolume);
-    }
-    public void decreaseVolume() {
-        int currentVolume = this.currentVolume - 1;
-        setCurrentVolume(currentVolume);
-    }
+    setCurrentVolume(currentVolume);
+  }
 }
+
+
+
