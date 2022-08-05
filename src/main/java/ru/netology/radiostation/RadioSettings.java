@@ -32,8 +32,20 @@ public class RadioSettings {
   public int getMaxVolume() {
     return maxVolume;
   }
+// метод установки станции в пользовательском диапазоне
+  public void setCurrentStationUser(int currentStationUser) {
+    if (rangeUser < currentStationUser) {
+      currentStation = 404;
+    }
+    if (rangeUser >= currentStationUser) {
+      currentStation = currentStationUser;
+    }
+  }
+  public int getCurrentStationUser() {
+    return currentStation;
+  }
 
-  // метод установки пользовательского диапазона станций
+//   метод установки пользовательского диапазона станций
   public void setRangeUser(int rangeUserTest) {
     if (rangeUserTest <= rangeUser && rangeUserTest >= minStation) {
       rangeUser = rangeUserTest;

@@ -1,13 +1,29 @@
 package ru.netology.radiostation;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RadioTests {
 
   RadioSettings station = new RadioSettings() {
   };
+
+  // тест на установку станции в пользовательском диапазоне
+  @Test
+  void settingsRevisionHomeWorkSuccessfulTest() {
+    RadioSettings station = new RadioSettings(20) {
+    };
+    station.setCurrentStationUser(15);
+    assertEquals(15, station.getCurrentStationUser());
+  }
+
+  @Test
+  void settingsRevisionHomeWorkFailTestStationUpRanger() {
+    RadioSettings station = new RadioSettings(20) {
+    };
+    station.setCurrentStationUser(21);
+    assertEquals(404, station.getCurrentStationUser());
+  }
 
   @Test
     //тест на установку диапазона станций внутри пользовательского диапазона станций
